@@ -56,12 +56,13 @@ def inner_four_end(input_list):
     """Return the sixth, fifth, fourth, and third elements from the end of the
     list, in that order.
     """
-    return input_list[6:3:-1]
+    return input_list[custom_len(input_list)-6:custom_len(input_list)-2]
+    #return input_list[5:1:-1]
 
 def replace_head(input_list):
     """Replace the head of the input list with the value 42."""
     input_list[0] = 42
-    #return input_list[0]
+    return input_list[0]
 
 def replace_third_and_last(input_list):
     """Replace the third and last elements of the input list with the value 37."""
@@ -141,11 +142,17 @@ def custom_insert(input_list, index, value):
     """custom_insert(input_list, index, value) imitates
     input_list.insert(index, value)
     """
+    input_list[index:index] = [value]
     
-    first_half=[input_list[0:index]]
-    second_half=[input_list[index+1:-1]]
-
-    return [first_half] + [value] + [second_half]
+    # print "Index: ", index
+    # print "Value : ", value
+    # first_half= input_list[0:index+1]
+    # print "First Half", first_half
+    # second_half= input_list[index:-1]
+    # print "Second Half", second_half
+    
+    # input_list[0:-1] = first_half + [value] + second_half
+    # print "Input List", input_list
 
 
    # for element in input_list:
@@ -234,23 +241,66 @@ def custom_reverse(input_list):
      #    input_list[element]=temp
       #input_list[::-1]
 
+    # counter = 1
+    # temp = " "
+
+    # for index in range(len(input_list)):
+    #     input_list[index] = temp
+    #     input_list[len(input_list)-counter] = input_list[index]
+    #     temp = input_list[len(input_list)-counter]
+
+    # return input_list
+
+    temp=" "
     counter = 1
-    temp = " "
 
-    for index in range(len(input_list)):
-        input_list[index] = temp
-        input_list[len(input_list)-counter] = input_list[index]
-        temp = input_list[len(input_list)-counter]
-
+    for index in range(custom_len(input_list)/2):
+    # print "Counter at beginning is: %r" % counter
+    # print "Index at beginning is: %r" % index
+    # print "temp before the temp line is: %s" % temp
+    #give temp the value of the first element
+        temp = input_list[index]
+        input_list[index] = input_list[custom_len(input_list)-counter]
+    #print "TEMP is: %s" % temp
+        input_list[custom_len(input_list)-counter] = temp 
+    # print "TEMPP: %s" % temp
+    # #cat[len(cat)-counter] = cat[index]
+    # print "Cat right now is: %r" % cat
+    
+        counter += 1
+    # print "COUNTER at the end of loop is: %r" % counter
+    # print "INDEX at the end is: %r" % index
+    # print "TEMP the   tat end is: %s" % temp
+    #print "Cat right now is: %r" % cat
     return input_list
-
 
 def custom_contains(input_list, value):
     """custom_contains(input_list, value) imitates (value in input_list)"""
     pass
 
+    for element in input_list:
+        if element == value:
+            return True
+    else:
+        return False
+
 def custom_equality(some_list, another_list):
     """custom_equality(some_list, another_list) imitates
     (some_list == another_list)
     """
-    pass
+    counter = 0
+
+    if custom_len(some_list) != custom_len(another_list):
+        return False
+
+    # while (counter < custom_len(some_list) and counter < custom_len(another_list)):
+    for counter in range(custom_len(some_list)-1): 
+        if some_list[counter] == another_list[counter]:
+            counter += 1
+        else:
+            return False
+    return True
+
+
+
+
