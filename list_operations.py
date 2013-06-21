@@ -141,33 +141,39 @@ def custom_insert(input_list, index, value):
     """custom_insert(input_list, index, value) imitates
     input_list.insert(index, value)
     """
-   
+    
+    first_half=[input_list[0:index]]
+    second_half=[input_list[index+1:-1]]
+
+    return [first_half] + [value] + [second_half]
+
 
    # for element in input_list:
-    #    if input_list[]== index:
-     #       custom_extend(element, value)
+   #     if input_list[]== index:
+   #         custom_extend(element, value)
 
-    #input_list[custom_extend(input_list):] = [value]
+    # input_list[custom_extend(input_list):] = [value]
 
-    #input_list.custom_extend(index,value)
+    # input_list.custom_extend(index,value)
 
-    #for element in xrange(index):
-        #custom_extend(input_list,value) 
-     #   custom_extend(input_list,value)
+    # for element in xrange(index):
+    #     custom_extend(input_list,value) 
+    #    custom_extend(input_list,value)
 
-    #input_list[index] += 
+    # input_list[index] += 
     
-    #THIS MAKES SENSE TO ME!!
-    custom_extend(input_list[index],value)
+    # THIS MAKES SENSE TO ME!!
+    # custom_extend(input_list[index],value)
 
-    #input_list[custom_extend(index,value):] = [value]
+    # input_list[custom_extend(index,value):] = [value]
 
-    #input_list[index] += custom_extend(input_list,value)
+    # input_list[index] += custom_extend(input_list,value)
 
-    #custom_append(input_list[index],value)
+    # custom_append(input_list[index],value)
 
 def custom_remove(input_list, value):
     """custom_remove(input_list, value) imitates input_list.remove(value)"""
+
 
     #for element in input_list:
     #    if element == value:
@@ -175,25 +181,69 @@ def custom_remove(input_list, value):
 
     #del input_list[0:0]
 
+    # for element in input_list:
+    #    if element == value:
+    #        del element
+
+    counter=0
+    # print "Value: %r " % value
+
     for element in input_list:
-        if input_list[element] == value:
-            del (input_list[index])
+        # print "COUNTER: %r" % counter
+        # print "ELEMENT: %r" % element
+        if element == value:
+           del input_list[counter]
+           return 
+        counter += 1
 
 def custom_pop(input_list):
     """custom_pop(input_list) imitates input_list.pop()"""
-    pass
+    
+    x = input_list[-1]
+    del input_list[-1]
+
+    return x
+
+
 
 def custom_index(input_list, value):
     """custom_index(input_list, value) imitates input_list.index(value)"""
-    pass
+    
+    counter = 0
+
+    for string in input_list:
+        if string == value:
+            return counter
+        counter += 1
+
 
 def custom_count(input_list, value):
     """custom_count(input_list, value) imitates input_list.count(value)"""
-    pass
+    
+    counter = 0
+
+    for element in input_list:
+        if element == value:
+            counter += 1 
+    return counter
 
 def custom_reverse(input_list):
     """custom_reverse(input_list) imitates input_list.reverse()"""
-    pass
+
+   # for element in input_list #range(custom_len(input_list)-1,-1,-1):
+     #    input_list[element]=temp
+      #input_list[::-1]
+
+    counter = 1
+    temp = " "
+
+    for index in range(len(input_list)):
+        input_list[index] = temp
+        input_list[len(input_list)-counter] = input_list[index]
+        temp = input_list[len(input_list)-counter]
+
+    return input_list
+
 
 def custom_contains(input_list, value):
     """custom_contains(input_list, value) imitates (value in input_list)"""
